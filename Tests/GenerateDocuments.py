@@ -17,16 +17,16 @@ except IndexError:
     paths = (path for path in os.listdir("html") if path.endswith(".html"))
 
 for file_name in paths:
-    print "-" * 30
-    print "Parsing: %s" % file_name
+    print("-" * 30)
+    print("Parsing: %s" % file_name)
 
     document = word.Documents.Add()
 
     with open(os.path.join("html", file_name), "r") as fd:
         Html = fd.read()
-    print "Parsed HTML:"
+    print("Parsed HTML:")
     pprint.pprint(list(parser.Parse(Html)))
-    print "Rendering..."
+    print("Rendering...")
 
     #parser.preRenderHook = lambda el: sys.stdout.write("preElement %s\n" % el)
     #parser.postRenderHook = lambda el: sys.stdout.write("postRender: %s\n" % el)
@@ -36,7 +36,7 @@ for file_name in paths:
     def _postRenderHook(element):
         ''' Make all tables a blue style'''
 
-        print "Element %s" % element
+        print("Element %s" % element)
         if isinstance(element, Table):
             # Styles: http://msdn.microsoft.com/en-us/library/office/ff835210(v=office.14).aspx
             if element.HasHeader:
@@ -50,4 +50,4 @@ for file_name in paths:
     document.SaveAs(path)
     document.Close()
 
-    print "-" * 30
+    print("-" * 30)

@@ -111,7 +111,7 @@ class TableMapper(object):
                         mapping[key] = row, column + colspan - 1
 
         # Calculate the maximum table size
-        rows, columns = zip(*mapping.values())
+        rows, columns = list(zip(*list(mapping.values())))
         self.max_rows, self.max_columns = max(rows), max(columns)
 
         # Calculating cells to merge

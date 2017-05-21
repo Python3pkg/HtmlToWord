@@ -73,7 +73,7 @@ class Parser(object):
             self.ElementMappings[tag] = element
 
     def ReplaceElement(self, old_element, new_element):
-        for tag, element in self.ElementMappings.items():
+        for tag, element in list(self.ElementMappings.items()):
             if element == old_element:
                 self.ElementMappings[tag] = new_element
 
@@ -174,7 +174,7 @@ class Parser(object):
         if len(dct) == 0:
             return True
 
-        target_classes = filter(functools.partial(isinstance, element), dct.keys())
+        target_classes = list(filter(functools.partial(isinstance, element), list(dct.keys())))
         #    (el_class for el_class in dct.keys() if isinstance(element, el_class))
         callbacks = itertools.chain.from_iterable((dct[k] for k in target_classes))
 

@@ -118,7 +118,7 @@ class BaseElement(object):
             )
             return None
         rng = self.document.Range(start_pos, end_pos)
-        for attribute, value in self.attrs.items():
+        for attribute, value in list(self.attrs.items()):
             try:
                 if attribute == 'class' and value:
                     if isinstance(value, list):
